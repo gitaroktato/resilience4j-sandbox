@@ -13,7 +13,7 @@ scenarios:
     requests:
     - label: hello-get
       method: GET
-      url: http://${BASE_URL}/application/hello
+      url: http://${BASE_URL}/hello
       assert:
         - contains:
           - "hello"
