@@ -4,20 +4,37 @@ settings:
     BASE_URL: 192.168.99.100
 
 execution:
-- concurrency: 3
+- concurrency: 1
   hold-for: 20m
   # ramp-up: 40s
-  scenario: hello-test
+  scenario: hello-test-application1
+- concurrency: 1
+  hold-for: 20m
+  # ramp-up: 40s
+  scenario: hello-test-application2
 scenarios:
-  hello-test:
+  hello-test-application1:
     requests:
     - label: hello-get
       method: GET
       url: http://${BASE_URL}/hello
+      headers:
+        application: "application1"
       assert:
         - contains:
           - "hello"
           subject: body
+  hello-test-application2:
+    requests:
+    - label: hello-get-2
+      method: GET
+      url: http://${BASE_URL}/hello
+      headers:
+        application: "application2"
+    assert:
+      - contains:
+        - "hello"
+        subject: body
 modules:
   jmeter:
     gui: false

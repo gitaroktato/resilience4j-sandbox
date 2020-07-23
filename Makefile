@@ -2,13 +2,12 @@ APPLICATION_BASEDIR = .
 DOCKER_BASEDIR = $(APPLICATION_BASEDIR)/src/main/docker
 DOCKER_IMAGE_VERSION = 1.0
 E2E_BASEDIR = $(APPLICATION_BASEDIR)/src/e2e
-SCENARIO = hello-test
 BASE_URL = 192.168.99.100:8080
 
 TAURUS_COMMAND = bzt \
 	-o settings.artifacts-dir=$(E2E_BASEDIR)/logs \
 	-o settings.env.BASE_URL=$(BASE_URL) \
-	-o execution.0.scenario=$(SCENARIO) $(E2E_BASEDIR)/hello-test.yml
+	$(E2E_BASEDIR)/hello-test.yml
 
 .PHONY: e2e gradle
 
