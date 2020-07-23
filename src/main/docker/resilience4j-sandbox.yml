@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  application:
+    image: quarkus/resilience4j-sandbox-jvm:1.0
+    ports:
+      - "8080:8080"

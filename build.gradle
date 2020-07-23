@@ -1,0 +1,45 @@
+plugins {
+    id 'java'
+    id 'io.quarkus'
+}
+
+repositories {
+     mavenLocal()
+     mavenCentral()
+}
+
+dependencies {
+    implementation enforcedPlatform("${quarkusPlatformGroupId}:${quarkusPlatformArtifactId}:${quarkusPlatformVersion}")
+    implementation 'io.quarkus:quarkus-resteasy'
+    implementation 'io.quarkus:quarkus-smallrye-metrics'
+    implementation "io.github.resilience4j:resilience4j-circuitbreaker:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-ratelimiter:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-retry:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-bulkhead:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-cache:${resilience4jVersion}"
+    implementation "io.github.resilience4j:resilience4j-timelimiter:${resilience4jVersion}"
+
+    testImplementation 'io.quarkus:quarkus-junit5'
+    testImplementation 'io.rest-assured:rest-assured'
+}
+
+group 'com.epam.example'
+version '0.1'
+
+compileJava {
+    options.encoding = 'UTF-8'
+    options.compilerArgs << '-parameters'
+}
+
+compileTestJava {
+    options.encoding = 'UTF-8'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
+test {
+    systemProperty "java.util.logging.manager", "org.jboss.logmanager.LogManager"
+}

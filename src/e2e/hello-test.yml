@@ -1,0 +1,23 @@
+---
+settings:
+  env:
+    BASE_URL: 192.168.99.100
+
+execution:
+- concurrency: 3
+  hold-for: 20m
+  # ramp-up: 40s
+  scenario: hello-test
+scenarios:
+  hello-test:
+    requests:
+    - label: hello-get
+      method: GET
+      url: http://${BASE_URL}/application/hello
+      assert:
+        - contains:
+          - "hello"
+          subject: body
+modules:
+  jmeter:
+    gui: false
