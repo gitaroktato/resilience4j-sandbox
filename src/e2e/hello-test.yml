@@ -4,11 +4,11 @@ settings:
     BASE_URL: 192.168.99.100
 
 execution:
-- concurrency: 1
+- concurrency: 10
   hold-for: 20m
   # ramp-up: 40s
   scenario: hello-test-application1
-- concurrency: 1
+- concurrency: 10
   hold-for: 20m
   # ramp-up: 40s
   scenario: hello-test-application2

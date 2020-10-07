@@ -44,11 +44,9 @@ public class MyResource {
         // Getting the meter for the specific application
         Meter meter = getMeterForApplication(application);
         meter.mark();
-        //
+        // Rate-limiting
         var rateLimiter = getRateLimiterForApplication(application);
-        var limitedCall = RateLimiter.decorateCallable(rateLimiter, () -> {
-            return "hello";
-        });
+        var limitedCall = RateLimiter.decorateCallable(rateLimiter, () -> "hello");
         return limitedCall.call();
     }
 
